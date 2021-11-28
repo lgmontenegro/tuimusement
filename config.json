@@ -1,0 +1,4 @@
+{
+    "tui_musement_api" : "https://api.musement.com/api/v3/cities",
+    "weather_api" : "teste"
+}
