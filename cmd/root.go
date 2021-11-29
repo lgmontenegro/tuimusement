@@ -18,12 +18,14 @@ var (
 		Short: "Tui Musement CLI will show you all the weather of all the available Musements city",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			app = bootstrap.BootstrapApplication(viper.GetString("tui_musement_api"))
-			body, err := app.GetCities()
+			cities, err := app.GetCities()
 			if err != nil {
 				return err
 			}
 
-			fmt.Println(string(body))
+			for i,city := range cities.Cities {
+				fmt.Println(i, city.Name)
+			}
 
 			return nil
 		},

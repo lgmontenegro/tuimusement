@@ -1,7 +1,9 @@
 package application
 
 import (
+	"encoding/json"
 	"fmt"
+	"lgmontenegro/tuimusement/internal/domain"
 	"lgmontenegro/tuimusement/internal/service"
 	"lgmontenegro/tuimusement/internal/task"
 )
@@ -19,11 +21,18 @@ func NewApp(tuiAPIEndpoint string) (appConfig App) {
 	}
 }
 
-func (c *App) GetCities() (body []byte, err error) {
+func (c *App) GetCities() (cityCollection domain.CitiesCollection, err error) {
+	var (
+		cities domain.CitiesCollection		
+		body   []byte
+	)
+
 	body, err = c.CityCrawler.GetData(task.CityFetcher{})
 	if err != nil {
-		return []byte{}, err
+		return domain.CitiesCollection{}, err
 	}
 
-	return body, nil
+	json.Unmarshal(body, &cities.Cities)
+
+	return cities, nil
 }
