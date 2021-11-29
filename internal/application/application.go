@@ -31,6 +31,37 @@ func NewApp(tuiAPIEndpoint, tuiKey, weatherEndpoint, weatherKey string) (appConf
 	}
 }
 
+func (c *App) ShowInfo() (err error) {
+	cities, err := c.getCities()
+	if err != nil {
+		return err
+	}
+
+	closureGetWeather := func(name string) {
+		weather, err := c.getWeather(name)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		climate := ""
+		for _, w := range weather.Forecast.Forecastday {
+			climate = fmt.Sprintf("%s - %s", climate, w.Day.Condition.Text)
+		}
+		climate = strings.TrimLeft(climate, " -")
+
+		_, err = fmt.Printf("Processed city %s | %s \n", name, climate)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+
+	for _, city := range cities.Cities {
+		closureGetWeather(city.Name)
+	}
+
+	return nil
+}
+
 func (c *App) getCities() (cityCollection domain.CitiesCollection, err error) {
 	var (
 		cities domain.CitiesCollection
@@ -64,33 +95,4 @@ func (c *App) getWeather(city string) (weatherStatus domain.Weather, err error) 
 	return weather, nil
 }
 
-func (c *App) ShowInfo() (err error) {
-	cities, err := c.getCities()
-	if err != nil {
-		return err
-	}
 
-	closureGetWeather := func(name string) {
-		weather, err := c.getWeather(name)
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		climate := ""
-		for _, w := range weather.Forecast.Forecastday {
-			climate = fmt.Sprintf("%s - %s", climate, w.Day.Condition.Text)
-		}
-		climate = strings.TrimLeft(climate, " -")
-
-		_, err = fmt.Printf("Processed city %s | %s \n", name, climate)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-
-	for _, city := range cities.Cities {
-		closureGetWeather(city.Name)
-	}
-
-	return nil
-}

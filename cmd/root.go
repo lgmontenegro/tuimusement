@@ -40,8 +40,6 @@ func initConfig() {
 		os.Exit(1)
 	}
 
-	fmt.Println(configFilePath)
-
 	viper.SetConfigName("config")
 	viper.SetConfigType("json")
 	viper.AddConfigPath(configFilePath)
