@@ -14,11 +14,11 @@ type App struct {
 	CityCrawler    service.CrawlerConfig
 }
 
-func NewApp(tuiAPIEndpoint, tuiKey, weatherEndpoint, weatherKey string) (appConfig App) {
+func NewApp(tuiAPIEndpoint, weatherEndpoint, weatherKey string) (appConfig App) {
 	var (
 		cityCrawler, weatherCrawler service.CrawlerConfig
 	)
-	cityCrawler = service.NewCrawler(tuiAPIEndpoint, tuiKey)
+	cityCrawler = service.NewCrawler(tuiAPIEndpoint, "")
 	weatherCrawler = service.NewCrawler(weatherEndpoint, weatherKey)
 	weatherCrawler.Parameter = make(map[string]string)
 	weatherCrawler.Parameter["aqi"] = "no"

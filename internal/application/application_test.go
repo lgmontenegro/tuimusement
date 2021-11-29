@@ -9,7 +9,6 @@ import (
 func TestNewApp(t *testing.T) {
 	type args struct {
 		tuiAPIEndpoint  string
-		tuiKey          string
 		weatherEndpoint string
 		weatherKey      string
 	}
@@ -22,7 +21,7 @@ func TestNewApp(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAppConfig := NewApp(tt.args.tuiAPIEndpoint, tt.args.tuiKey, tt.args.weatherEndpoint, tt.args.weatherKey); !reflect.DeepEqual(gotAppConfig, tt.wantAppConfig) {
+			if gotAppConfig := NewApp(tt.args.tuiAPIEndpoint, tt.args.weatherEndpoint, tt.args.weatherKey); !reflect.DeepEqual(gotAppConfig, tt.wantAppConfig) {
 				t.Errorf("NewApp() = %v, want %v", gotAppConfig, tt.wantAppConfig)
 			}
 		})

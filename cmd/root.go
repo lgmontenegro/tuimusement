@@ -17,7 +17,7 @@ var (
 		Use:   "tuimusement",
 		Short: "Tui Musement CLI will show you all the weather of all the available Musements city",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			app = bootstrap.BootstrapApplication(viper.GetString("tui_musement_api"), viper.GetString("tui_musement_key"), viper.GetString("weather_api"), viper.GetString("weather_key"))
+			app = bootstrap.BootstrapApplication(viper.GetString("tui_musement_api"), viper.GetString("weather_api"), viper.GetString("weather_key"))
 
 			err := app.ShowInfo()
 			if err != nil {

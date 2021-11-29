@@ -4,6 +4,6 @@ import (
 	"lgmontenegro/tuimusement/internal/application"
 )
 
-func BootstrapApplication(tuiAPIEndpoint, tuiKey, weatherEndpoint, weatherKey string) (app application.App) {
-	return application.NewApp(tuiAPIEndpoint, tuiKey, weatherEndpoint, weatherKey)
+func BootstrapApplication(tuiAPIEndpoint, weatherEndpoint, weatherKey string) (app application.App) {
+	return application.NewApp(tuiAPIEndpoint, weatherEndpoint, weatherKey)
 }

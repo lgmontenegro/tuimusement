@@ -1,10 +1,9 @@
 FROM golang:1.17.3
 
-WORKDIR /go/src/app
+WORKDIR /go/src/tuimusement
 COPY . .
 
-RUN go mod vendor
-RUN go mod tidy
-RUN go build .
+RUN go get -d -v ./...
+RUN go install -v ./...
 
 CMD ["tuimusement"]

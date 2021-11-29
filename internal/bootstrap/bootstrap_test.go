@@ -30,7 +30,7 @@ func TestBootstrapApplication(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotApp := BootstrapApplication(tt.args.tuiAPIEndpoint, tt.args.tuiKey, tt.args.weatherEndpoint, tt.args.weatherKey); !reflect.DeepEqual(gotApp, tt.wantApp) {
+			if gotApp := BootstrapApplication(tt.args.tuiAPIEndpoint, tt.args.weatherEndpoint, tt.args.weatherKey); !reflect.DeepEqual(gotApp, tt.wantApp) {
 				t.Errorf("BootstrapApplication() = %v, want %v", gotApp, tt.wantApp)
 			}
 		})
