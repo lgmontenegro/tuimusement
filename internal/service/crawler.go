@@ -1,20 +1,17 @@
 package service
 
-import "fmt"
-
 type Crawler interface {
 	FetchURL(crawlerConfig *CrawlerConfig) (body []byte, err error)
 }
 
 type CrawlerConfig struct {
-	Endpoint string
-	Key      string
+	Endpoint  string
+	Key       string
 	Parameter map[string]string
 }
 
 func NewCrawler(endpoint, key string) (cfg CrawlerConfig) {
-	fmt.Println("crawler:", endpoint)
-	return CrawlerConfig {
+	return CrawlerConfig{
 		Endpoint: endpoint,
 		Key:      key,
 	}
