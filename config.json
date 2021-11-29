@@ -1,4 +1,6 @@
 {
     "tui_musement_api" : "https://api.musement.com/api/v3/cities",
-    "weather_api" : "teste"
+    "tui_musement_key" : "",
+    "weather_api" : "http://api.weatherapi.com/v1/forecast.json",
+    "weather_key": "734642c9511b47d589b01304212911"    
 }

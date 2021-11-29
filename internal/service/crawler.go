@@ -8,12 +8,15 @@ type Crawler interface {
 
 type CrawlerConfig struct {
 	Endpoint string
+	Key      string
+	Parameter map[string]string
 }
 
-func NewCrawler(endpoint string) (cfg CrawlerConfig) {
+func NewCrawler(endpoint, key string) (cfg CrawlerConfig) {
 	fmt.Println("crawler:", endpoint)
-	return CrawlerConfig{
+	return CrawlerConfig {
 		Endpoint: endpoint,
+		Key:      key,
 	}
 }
 
